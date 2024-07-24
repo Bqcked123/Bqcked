@@ -1,0 +1,178 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "🔥 Hqrny Script Hub | Game 🔫",
+   LoadingTitle = "🤷‍♂️ FF2🤷‍♂️ ",
+   LoadingSubtitle = "by Hqrnymf",
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil,
+      FileName = "Hqrny Hub"
+   },
+  
+            Discord = {
+      Enabled = true,
+      Invite = "6TsdC2Xr", 
+      RememberJoins = true 
+   },
+   KeySystem = true, 
+   KeySettings = {
+      Title = "Key | FF2",
+      Subtitle = "Link In Discord Server",
+      Note = "Join Server From Misc Tab",
+      FileName = "HqrnyHubKey1", 
+      SaveKey = true,
+      GrabKeyFromSite = true, 
+      Key = {"https://pastebin.com/raw/K66eyw8M"}
+
+local MainTabTab = Window:CreateTab("Home", nil) 4483362458) -- Title, Image
+local MainSection = Tab:CreateSection("Main")
+Rayfield:Notify({
+   Title = "The script has been excuted",
+   Content = "Very good gui",
+   Duration = 5,
+   Image = nil,
+   Actions = { 
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+
+local Button = Tab:CreateButton({
+   Name = "Infinite Jump",
+   Callback = function()
+  local Button = MainTab:CreateButton({
+   Name = "Infinite Jump Toggle",
+   Callback = function()
+                                
+_G.infinjump = not _G.infinjump
+
+if _G.infinJumpStarted == nil then
+
+	_G.infinJumpStarted = true
+	
+	--Notifies readiness
+	game.StarterGui:SetCore("SendNotification", {Title="Youtube Hub"; Text="Infinite Jump Activated!"; Duration=5;})
+
+	--The actual infinite jump
+	local plr = game:GetService('Players').LocalPlayer
+	local m = plr:GetMouse()
+	m.KeyDown:connect(function(k)
+		if _G.infinjump then
+			if k:byte() == 32 then
+			humanoid = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
+			humanoid:ChangeState('Jumping')
+			wait()
+			humanoid:ChangeState('Seated')
+			end
+		end
+	end)
+end
+   end,
+   end,
+})
+
+local Slider = MainTabTab:CreateSlider({
+   Name = "Walkspeed Slider",
+   Range = {0, 100},
+   Increment = 1,
+   Suffix = "Speed",
+   CurrentValue = 16,
+   Flag = "Slider1",
+   Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+   end,
+})        
+
+local Slider = MainTabTab:CreateSlider({
+   Name = "JumpBoost Slider",
+   Range = {0, 100},
+   Increment = 1,
+   Suffix = "JumpBoost",
+   CurrentValue = 10,
+   Flag = "Slider2", 
+   Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.Jump_Boost_Multiplier = (Value)
+   end,
+})        
+
+local MovementTab = Window:CreateTab("Movement", nil) 
+local Section = MoveMentTab:CreateSection("Movement")
+
+local Button = MovementTab:CreateButton({
+   Name = "WalkSpeed",
+   Callback = function()
+       print("WalkSpeed")
+   end,
+})
+
+local Button = MovementTab:CreateButton({
+   Name = "JumpBoost",
+   Callback = function()
+       print("JumpBoost")
+   end,
+})
+
+local MiscTab = Window:CreateTab("Misc", nil) 
+local Section = MiscTab:CreateSection("Movement")
+
+local Toggle = MiscTab:CreateToggle({
+   Name = "QuickTP",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+
+local function teleportOneInchForward()
+
+    local character = game.Players.LocalPlayer.Character
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    local currentCFrame = humanoidRootPart.CFrame
+    local forwardVector = currentCFrame.LookVector
+
+    local newPosition = currentCFrame.Position + forwardVector * 1
+
+    humanoidRootPart.CFrame = CFrame.new(newPosition)
+end
+
+   end,
+})
+
+local Slider = Tab:CreateSlider({
+   Name = "Magnet Slider",
+   Range = {0, 100},
+   Increment = 1,
+   Suffix = "Magnet",
+   CurrentValue = 10,
+   Flag = "Slider3",
+   Callback = function(Value)
+
+local MAGNET_STRENGTH = 10 
+
+
+local function applyMagnetHack(player)
+ 
+    local character = player.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+
+            local magnetForce = Instance.new("BodyVelocity")
+            magnetForce.MaxForce = Vector3.new(0, math.huge, 0)  -- Apply force only in the Y direction (upward)
+            magnetForce.Velocity = Vector3.new(0, MAGNET_STRENGTH, 0)  -- Set the initial velocity to attract upward
+            
+
+            magnetForce.Parent = humanoid.RootPart
+            
+
+            wait(0.5)
+            magnetForce:Destroy()
+        end
+    end
+end
+
+   end,
